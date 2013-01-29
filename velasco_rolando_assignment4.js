@@ -60,8 +60,20 @@ var changeSeparator = function() {
 
 
 // main code to test library functions
-var string = "123-456-7890";
-var isPhoneNumber = isStringAPhoneNumber(string);
-console.log("Calling function isStringAPhoneNumber(" + string + ").");
-console.log("Is this a phone number? " + isPhoneNumber);
+
+// test isStringAPhoneNumber function
+var string = ["123-456-7890", "1234567890", "123-456-78900", "123-45678900"];
+for (var i = 0; i < string.length; i++) {
+	var isPhoneNumber = isStringAPhoneNumber(string[i]);
+	console.log("Calling function isStringAPhoneNumber(" + string[i] + ").");
+	console.log("Is this a phone number? " + isPhoneNumber);
+};
+
+// test isStringAnEmail function
+string = ["aaa@bbb.ccc", "aaabbb@ccc", "a@bbbccc.", "aaa.bbb@ccc"];
+for (var i = 0; i < string.length; i++) {
+	var isEmail = isStringAnEmail(string[i]);
+	console.log("Calling function isStringAnEmail(" + string[i] + ").");
+	console.log("Is this an email address? " + isEmail);
+};
  
