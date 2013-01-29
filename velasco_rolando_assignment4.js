@@ -12,18 +12,20 @@ var isStringAPhoneNumber = function(string) {
 	
 		// Second, check that the length of the string is the same length as a phone number
 		if (string.length === 12) {
-			return true;
-		} else {
-			return false;
+			
+			//Lastly, check that there are no additional dashes in between the first and last
+			if (string.charAt(4) !== "-" && string.charAt(5) !== "-" && string.charAt(6) !== "-") {
+				return true;
+			};
 		};
-	} else {
-		return false;
 	};
+	
+	return false;
 };
 
 // Check if the string passed as the argument is an email address (follows pattern aaa@bbb.ccc)
 // Return true if it is an email or false it is not.
-var isStringAnEmail = function() {
+var isStringAnEmail = function(string) {
 	
 	// First find the locations of '@' and '.' in the string
 	var atCharIndex = string.indexOf("@");
@@ -62,7 +64,7 @@ var changeSeparator = function() {
 // main code to test library functions
 
 // test isStringAPhoneNumber function
-var string = ["123-456-7890", "1234567890", "123-456-78900", "123-45678900"];
+var string = ["123-456-7890", "1234567890", "123-456-78900", "123-4-5-6789"];
 for (var i = 0; i < string.length; i++) {
 	var isPhoneNumber = isStringAPhoneNumber(string[i]);
 	console.log("Calling function isStringAPhoneNumber(" + string[i] + ").");
