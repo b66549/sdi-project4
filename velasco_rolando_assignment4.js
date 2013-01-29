@@ -21,9 +21,29 @@ var isStringAPhoneNumber = function(string) {
 	};
 };
 
+// Check if the string passed as the argument is an email address (follows pattern aaa@bbb.ccc)
+// Return true if it is an email or false it is not.
 var isStringAnEmail = function() {
-
-
+	
+	// First find the locations of '@' and '.' in the string
+	var atCharIndex = string.indexOf("@");
+	var periodCharIndex = string.indexOf(".");
+	
+	// Check if the characters exist in the string.  If not, return false
+	if (atCharIndex !== -1 && periodCharIndex !== -1) {
+	
+		// Check that there are in the right order and at least one character is in between them
+		if ( periodCharIndex - atCharIndex > 1) {
+			
+			// Final check: the '@' symbol cannot be the first character in the string
+			// The '.' symbol cannot be the last character in the string
+			if (atCharIndex !== 0 && periodCharIndex !== (string.length - 1) ) {
+				return true;
+			};
+		};
+	};
+	
+	return false;
 };
 
 var isStringAURL = function() {
