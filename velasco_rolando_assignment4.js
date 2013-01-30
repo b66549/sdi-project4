@@ -57,8 +57,36 @@ var isStringAURL = function(string) {
 	return false;
 };
 
-var titleCaseString = function() {
+// Take in a string and title-case it (make first letter in each word uppercase)
+// Return the title-cased string
+var titleCaseString = function(string) {
+	
+	// local variables
+	var newString = "";
+	var flagMakeUpperCase = true;
+	var currentChar = "";
+	
+	// for loop through the string argument and add each character into new string,
+	// making the first letter of each word uppercase
+	for (var i = 0; i < string.length; i++) {
+		currentChar = string[i];
 
+		// Check if the current character is a space " "
+		if (currentChar === " ") {
+			newString += currentChar;
+			flagMakeUpperCase = true;
+		} else {
+			// Character is not a space, so check if it needs to be uppercase
+			if (flagMakeUpperCase) {
+				newString += currentChar.toUpperCase();
+				flagMakeUpperCase = false;
+			} else {
+				newString += currentChar.toLowerCase();
+			};
+		};
+	};		
+			
+	return newString;
 };
 
 var changeSeparator = function() {
@@ -72,7 +100,7 @@ var changeSeparator = function() {
 var string = ["123-456-7890", "1234567890", "123-456-78900", "123-4-5-6789"];
 for (var i = 0; i < string.length; i++) {
 	var isPhoneNumber = isStringAPhoneNumber(string[i]);
-	console.log("Calling function isStringAPhoneNumber(" + string[i] + ").");
+	console.log("Calling function isStringAPhoneNumber(\"" + string[i] + "\").");
 	console.log("Is this a phone number? " + isPhoneNumber);
 };
 
@@ -80,14 +108,22 @@ for (var i = 0; i < string.length; i++) {
 string = ["aaa@bbb.ccc", "aaabbb@ccc", "a@bbbccc.", "aaa.bbb@ccc"];
 for (var i = 0; i < string.length; i++) {
 	var isEmail = isStringAnEmail(string[i]);
-	console.log("Calling function isStringAnEmail(" + string[i] + ").");
+	console.log("Calling function isStringAnEmail(\"" + string[i] + "\").");
 	console.log("Is this an email address? " + isEmail);
 };
 
 // test isStringAURL function
 string = ["http://www.yahoo.com", "https://mail.yahoo.com", "htp://yahoo.com", "ahttp://yahoo.com", "http:/www,yahoo.com"];
 for (var i = 0; i < string.length; i++) {
-	var isPhoneNumber = isStringAPhoneNumber(string[i]);
-	console.log("Calling function isStringAURL(" + string[i] + ").");
-	console.log("Is this a URL? " + isPhoneNumber);
+	var isURL = isStringAURL(string[i]);
+	console.log("Calling function isStringAURL(\"" + string[i] + "\").");
+	console.log("Is this a URL? " + isURL);
+};
+
+// test titleCaseString function
+string = ["HELLO WORLD", "hello world", "HelLO wORlD, i AM a stRING!", " heeloworld ", "A b c D 3 F g "];
+for (var i = 0; i < string.length; i++) {
+	var newTitleCaseString = titleCaseString(string[i]);
+	console.log("Calling function titleCaseString(\"" + string[i] + "\").");
+	console.log("String now title-cased: " + newTitleCaseString);
 };
