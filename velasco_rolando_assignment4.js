@@ -24,7 +24,7 @@ var isStringAPhoneNumber = function(string) {
 };
 
 // Check if the string passed as the argument is an email address (follows pattern aaa@bbb.ccc)
-// Return true if it is an email or false it is not.
+// Return true if it is an email or false if it is not
 var isStringAnEmail = function(string) {
 	
 	// First find the locations of '@' and '.' in the string
@@ -48,8 +48,13 @@ var isStringAnEmail = function(string) {
 	return false;
 };
 
-var isStringAURL = function() {
-
+// Check if the string passed as the argument is a URL (starts with http:// or https://)
+// Return true if it is a URL or false if it is not
+var isStringAURL = function(string) {
+	if (string.startsWith("http://") || string.startsWith("https://")) {
+		return true;
+	};
+	return false;
 };
 
 var titleCaseString = function() {
@@ -78,4 +83,11 @@ for (var i = 0; i < string.length; i++) {
 	console.log("Calling function isStringAnEmail(" + string[i] + ").");
 	console.log("Is this an email address? " + isEmail);
 };
- 
+
+// test isStringAURL function
+string = ["http://www.yahoo.com", "https://mail.yahoo.com", "htp://yahoo.com", "ahttp://yahoo.com", "http:/www,yahoo.com"];
+for (var i = 0; i < string.length; i++) {
+	var isPhoneNumber = isStringAPhoneNumber(string[i]);
+	console.log("Calling function isStringAURL(" + string[i] + ").");
+	console.log("Is this a URL? " + isPhoneNumber);
+};
