@@ -53,15 +53,12 @@ var RVLibrary = function() {
 	// Check if the string passed as the argument is a URL (starts with http:// or https://)
 	// Return true if it is a URL or false if it is not
 	var isStringAURL = function(string) {
-/*		
+		
 		// local variables
-		var strLength = string.length;
-		var http1 = "http://";
-		var http2 = "https://";
-		for (var i = 0; i < strLength; i++) {
-			if (string[i] === http1[i] || string[i] === http2[i]) {
-*/
-		if (string.startsWith("http://") || string.startsWith("https://")) {
+		var substring1 = string.substring(0, 7);
+		var substring2 = string.substring(0, 8);
+
+		if (substring1 === "http://" || substring2 === "https://") {
 			return true;
 		};
 		return false;
