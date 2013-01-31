@@ -3,9 +3,7 @@
 // Project 4
 // Code library
 
-var RVLibrary = function() {
-	
-	
+var RVLibrary = function() {	
 	
 	// Check if the string passed as the argument is a phone number (follows pattern XXX-XXX-XXXX)
 	// Return true if it is a phone number or false if it is not.
@@ -23,7 +21,7 @@ var RVLibrary = function() {
 				};
 			};
 		};
-		
+
 		return false;
 	};
 	
@@ -164,12 +162,8 @@ var RVLibrary = function() {
 		for (var i = 0; i < array.length; i++) {
 			var currentNum = array[i];
 			if (currentNum > num) {
-				if (nextHighest === -1) {
+				if (nextHighest === -1 || currentNum < nextHighest) {
 					nextHighest = currentNum;
-				} else {
-					if (currentNum < nextHighest) {
-						nextHighest = currentNum;
-					};
 				};
 			};
 		};
