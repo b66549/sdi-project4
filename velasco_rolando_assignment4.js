@@ -203,7 +203,7 @@ for (var i = 0; i < string.length; i++) {
 	console.log("Calling function isStringAnEmail(\"" + string[i] + "\").");
 	console.log("Is this an email address? " + isEmail);
 };
-/*
+
 // test isStringAURL function
 string = ["http://www.yahoo.com", "https://mail.yahoo.com", "htp://yahoo.com", "ahttp://yahoo.com", "http:/www,yahoo.com"];
 for (var i = 0; i < string.length; i++) {
@@ -211,7 +211,7 @@ for (var i = 0; i < string.length; i++) {
 	console.log("Calling function isStringAURL(\"" + string[i] + "\").");
 	console.log("Is this a URL? " + isURL);
 };
-*/
+
 // test titleCaseString function
 string = ["HELLO WORLD", "hello world", "HelLO wORlD, i AM a stRING!", " heeloworld ", "A b c D 3 F g "];
 for (var i = 0; i < string.length; i++) {
