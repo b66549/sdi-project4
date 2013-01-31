@@ -101,13 +101,13 @@ var RVLibrary = function() {
 	var changeSeparator = function(string, separator1, separator2) {
 		// local variables
 		newString = "";
+		sep1Length = separator1.length;
 		
 		// for loop to traverse string
 		for (var i = 0; i < string.length; i++) {
-			
-			// If the current position starts with the first separator, add the second separator
-			// to the new String instead. Otherwise, add the current character to the new String
-			if (string.startsWith(separator1, i)) {
+			var substring = string.substring(i, i+sep1Length);
+
+			if (substring === separator1) {
 				newString += separator2;
 				
 				// Need to increment i by more than 1 if the first separator is a string length
@@ -216,7 +216,7 @@ for (var i = 0; i < string.length; i++) {
 	console.log("Calling function titleCaseString(\"" + string[i] + "\").");
 	console.log("String now title-cased: " + newTitleCaseString);
 };
-/*
+
 // test changeSeparator function
 string = ["a/b/c", "file name is this", "Enter00The00Matrix", " 10001000110001110001", "XXXXIXXXX XXAXXMXX HXXIXXXDXDEXXNXX"];
 var separator1 = ["/", " ", "00", "000", "X"]; 
@@ -226,7 +226,6 @@ for (var i = 0; i < string.length; i++) {
 	console.log("Calling function changeSeparator(\"" + string[i] + "\", \"" + separator1[i] + "\", \"" + separator2[i] + "\").");
 	console.log("String now has separators replaced: " + changedStringSeparator);
 };
-*/
 
 // test fuzzyMatchNumber function
 var number1 = [5, 5, 7, 10, 3, 8];
