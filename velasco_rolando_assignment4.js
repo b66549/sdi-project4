@@ -114,6 +114,33 @@ var changeSeparator = function(string, separator1, separator2) {
 	return newString;
 };
 
+var formatNumber = function() {
+	
+	
+};
+
+// Takes in three number arguments, checks if the first number is less than or greater than the second number,
+// then use the third number to see if the first number is within the percentage of the second number.
+var fuzzyMatchNumber = function(num1, num2, num3) {
+	
+	// local veriables
+	percent = 0.00
+	// First, check if num1 and num2 are the same.  If so, by default it's a match so return true
+	if (num1 === num2) {
+		return true
+	};
+	
+	// Check if num1 is less than or greater than num2.  This will affect the logic
+	if (num1 < num 2) {
+		
+		
+		
+	} else {
+		
+		
+		
+	};
+};
 
 // main code to test library functions
 
