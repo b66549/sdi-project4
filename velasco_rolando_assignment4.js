@@ -136,10 +136,10 @@ var RVLibrary = function() {
 	var fuzzyMatchNumber = function(num1, num2, num3) {
 		
 		// local veriables
-		percent = 0.00;
-		delta = 0;
-		difference = 0;
-		
+		var percent = 0.00;
+		var delta = 0;
+		var difference = 0;
+
 		// First, check if num1 and num2 are the same.  If so, by default it's a match so return true
 		if (num1 === num2) {
 			return true
@@ -154,7 +154,28 @@ var RVLibrary = function() {
 			return false;
 		};					
 	};
-	
+
+	//
+	var nextHighestNumber = function(array, num) {
+		
+		// local variables;
+		var nextHighest = -1; // means none set
+		
+		for (var i = 0; i < array.length; i++) {
+			var currentNum = array[i];
+			if (currentNum > num) {
+				if (nextHighest === -1) {
+					nextHighest = currentNum;
+				} else {
+					if (currentNum < nextHighest) {
+						nextHighest = currentNum;
+					};
+				};
+			};
+		};
+		return nextHighest; // there are no next number greater than num
+	};
+
 	return {
 		"isStringAPhoneNumber": isStringAPhoneNumber,
 		"isStringAnEmail": isStringAnEmail,
@@ -162,7 +183,8 @@ var RVLibrary = function() {
 		"titleCaseString": titleCaseString,
 		"changeSeparator": changeSeparator,
 		"formatNumber": formatNumber,
-		"fuzzyMatchNumber": fuzzyMatchNumber
+		"fuzzyMatchNumber": fuzzyMatchNumber,
+		"nextHighestNumber": nextHighestNumber
 	};
 		
 };
@@ -221,6 +243,20 @@ var number2 = [10, 10, 5, 10, 1, 12];
 var number3 = [50, 40, 40, 10, 50, 20];
 for (var i = 0; i < string.length; i++) {
 	var isFuzzyMatchNumber = newLib.fuzzyMatchNumber(number1[i], number2[i], number3[i]);
-	console.log("Calling function isFuzzyMatchNumber\"" + number1[i] + "\", \"" + number2[i] + "\", \"" + number3[i] + "\").");
+	console.log("Calling function isFuzzyMatchNumber(" + number1[i] + ", " + number2[i] + ", " + number3[i] + ").");
 	console.log("Is " + number1[i] + " within " + number3[i] + "% of " + number2[i] + "? " + isFuzzyMatchNumber);
 };
+
+// test nextHighestNumber function
+var numbersArray = [[1, 4, 7, 9, 10, 14, 15], [10, 2, 6, 11, 5, 20, 1], [1, 3, 4]];
+var number = [12, 5, 5]; 
+for (var i = 0; i < numbersArray.length; i++) {
+	var nextHigherNumber = newLib.nextHighestNumber(numbersArray[i], number[i]);
+	console.log("Calling function nextHighestNumber([" + numbersArray[i] + "], " + number[i] + ").");
+	if (nextHigherNumber === -1) {
+		console.log("There is no number greater than " + number[i] + " in the array [" + numbersArray[i] + "].");
+	} else {
+		console.log("The smallest number greater than " + number[i] + " in the array [" + numbersArray[i] + "] is " + nextHigherNumber + ".");
+	};
+};
+
