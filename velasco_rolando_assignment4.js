@@ -100,12 +100,13 @@ var RVLibrary = function() {
 	// of the first separator in the string replaced by the second separator
 	var changeSeparator = function(string, separator1, separator2) {
 		// local variables
-		newString = "";
-		sep1Length = separator1.length;
+		var newString = "";
+		var sep1Length = separator1.length;
+		var substring = "";
 		
 		// for loop to traverse string
 		for (var i = 0; i < string.length; i++) {
-			var substring = string.substring(i, i+sep1Length);
+			substring = string.substring(i, i+sep1Length);
 
 			if (substring === separator1) {
 				newString += separator2;
@@ -121,11 +122,6 @@ var RVLibrary = function() {
 		return newString;
 	};
 	
-	var formatNumber = function() {
-		
-		
-	};
-	
 	// Takes in three number arguments, checks if the first number is less than or greater than the second number,
 	// then use the third number to see if the first number is within the percentage of the second number.
 	var fuzzyMatchNumber = function(num1, num2, num3) {
@@ -134,20 +130,31 @@ var RVLibrary = function() {
 		var percent = 0.00;
 		var delta = 0;
 		var difference = 0;
+		var results = "";
 
-		// First, check if num1 and num2 are the same.  If so, by default it's a match so return true
+		// First, check if num1 and num2 are the same.  If so, by default it's a match so return the results
 		if (num1 === num2) {
-			return true
+			results += num1 + " is the same as " + num2 + " and therefore is within " + num3 + "%."
+			return results;
 		};
 
+		// Use conditional to determine if num1 is less than or greater than num2, then add to the results
+		if (num1 < num2) {
+			results += num1 + " is less than " + num2 + " ";
+		} else {
+			results += num1 + " is greater than " + num2 + " ";
+		};
+		
 		percent = num3 / 100;
 		delta = num2 * percent;
 		difference = Math.abs(num2 - num1);
 		if (difference <= delta) {
-			return true;
+			results += "and is within " + num3 + "%.";
 		} else {
-			return false;
-		};					
+			results += "and is not within " + num3 + "%.";
+		};
+		
+		return results;			
 	};
 
 	//
@@ -173,7 +180,6 @@ var RVLibrary = function() {
 		"isStringAURL": isStringAURL,
 		"titleCaseString": titleCaseString,
 		"changeSeparator": changeSeparator,
-		"formatNumber": formatNumber,
 		"fuzzyMatchNumber": fuzzyMatchNumber,
 		"nextHighestNumber": nextHighestNumber
 	};
@@ -232,9 +238,9 @@ var number1 = [5, 5, 7, 10, 3, 8];
 var number2 = [10, 10, 5, 10, 1, 12]; 
 var number3 = [50, 40, 40, 10, 50, 20];
 for (var i = 0; i < string.length; i++) {
-	var isFuzzyMatchNumber = newLib.fuzzyMatchNumber(number1[i], number2[i], number3[i]);
+	var fuzzyMatchNumberResults = newLib.fuzzyMatchNumber(number1[i], number2[i], number3[i]);
 	console.log("Calling function isFuzzyMatchNumber(" + number1[i] + ", " + number2[i] + ", " + number3[i] + ").");
-	console.log("Is " + number1[i] + " within " + number3[i] + "% of " + number2[i] + "? " + isFuzzyMatchNumber);
+	console.log(fuzzyMatchNumberResults);
 };
 
 // test nextHighestNumber function
@@ -249,4 +255,3 @@ for (var i = 0; i < numbersArray.length; i++) {
 		console.log("The smallest number greater than " + number[i] + " in the array [" + numbersArray[i] + "] is " + nextHigherNumber + ".");
 	};
 };
-
